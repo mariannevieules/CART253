@@ -56,4 +56,4 @@ void mousePressed() {
 //But for now, if I don't write this // background(BACKGROUND_COLOR); in the draw it's a little bit abstract. 
 //If // background(BACKGROUND_COLOR); I wish the blue scores can stay like a reminder of the evolution like "at this moment I had a high score! Yeah!"
 //and "My score can be forever a better score!"
-// So now if you want to see your score you have to be really fast. 
+// So now if you want to see your score you have to be really fast! 
