@@ -126,6 +126,7 @@ void handleBallHitPaddle() {
   if (ballOverlapsPaddle()) {//vérifie si la balle touche le paddle
     ballY = paddleY - paddleHeight/2 - ballSize/2;//repositionne la balle
     ballVY = -ballVY;//on inverse la vitesse verticale de la balle pour qu'elle parte dans lautre sens
+    ballSize=ballSize-1;
   }
 }
 //vérifie si la balle touche le paddle, et renvoie une valeur
