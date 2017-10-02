@@ -32,7 +32,7 @@ int ballY;
 //vitesse de la balle =5
 int ballVX;
 int ballVY;
-int ballSpeed = 1;
+int ballSpeed = 2;
 //taille de la balle=16 
 int ballSize = 16;
 
@@ -45,7 +45,7 @@ int ballY2;
 //vitesse de la balle =5
 int ballVX2;
 int ballVY2;
-int ballSpeed2 = 2;
+int ballSpeed2 = 4;
 //taille de la balle=16 
 int ballSize2 = 16;
 
@@ -114,7 +114,14 @@ void draw() {
   //on active le bloc de code de mise à jour de la position de la balle
   updateBall();
   //on active le bloc de code dessinant la balle
+  
+  if (ballSize>0) {
   drawBall();
+  }
+  
+  else {
+    text("gagné",100,100);
+  }
   
   
   //balle 2
@@ -183,6 +190,8 @@ void updateBall() {
   handleBallHitWall();
   //activation du bloc de code gérant que faire si la balle touche le bas de la fenêtre
   handleBallOffBottom();
+  cridelaballe();
+  
 }
 
 
@@ -200,6 +209,7 @@ void updateBall2() {
   handleBallHitWall2();
   //activation du bloc de code gérant que faire si la balle touche le bas de la fenêtre
   handleBallOffBottom2();
+  
 }
 
 
@@ -230,8 +240,8 @@ void handleBallHitPaddle() {
   
   
   if (ballOverlapsPaddle()) {//vérifie si la balle touche le paddle
+    ballSize=ballSize-10;//diminue taille si touche paddle
   
-    ballSize=ballSize-1;//diminue taille si touche paddle
   
     ballY = paddleY - paddleHeight/2 - ballSize/2;//repositionne la balle
     ballVY = -ballVY;//on inverse la vitesse verticale de la balle pour qu'elle parte dans lautre sens
@@ -380,3 +390,17 @@ void keyReleased() {
     paddleVX = 0;//on le bloque à droite pour pas qu'il sorte de la fenêtre
   }
 }
+
+//faire crier la balle
+void cridelaballe() {
+  if (ballX - ballSize/2 > paddleX - paddleWidth/2 && ballX + ballSize/2 < paddleX + paddleWidth/2) {//si la balle est au niveau du paddle à l'horizontale
+    if (ballY > paddleY - paddleHeight) {//et si la balle est au niveau du paddle à la verticale
+      text("aïe", ballX+20, ballY-20);
+    }
+  }
+    
+    
+    
+  
+}
+  
