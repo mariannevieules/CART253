@@ -132,10 +132,10 @@ void drawStatic() {
   //LOOP
   
   // boucle (=loop) for, qui positionne des lignes horiz tous les 4 pixels, du bord haut (=0) jusqu'au bord bas (=height):
-  //for (int i=0; ...on commence à zero...
-  //i<height; ..on va jusqu'en bas de la fenêtre..
-  //;i+=4) ... on saute de 4 en 4 à chaque cycle, pour changer la position y (vertic) d'une ligne à l'autre
-  for (int i=0;i<height;i+=4){
+  for (int i=0; i<mouseY; i+=4) { //...on commence à zero...
+   //..on va jusqu'en bas de la fenêtre..
+  //... on saute de 4 en 4 à chaque cycle, pour changer la position y (vertic) d'une ligne à l'autre
+ 
     
     
   stroke(random(155),random(155));//couleur grise et transparence aléatoires qui changent en permanence
@@ -149,7 +149,7 @@ void drawStatic() {
   //etc...
   //et ainsi de suite jusqu'à la limite posée dans la boucle, c'est à dire la valeur verticale maximale de la fenêtre (i<height) )
   }
-  
+  //
   
   
   /*
