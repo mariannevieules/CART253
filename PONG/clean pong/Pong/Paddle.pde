@@ -6,15 +6,11 @@
 class Paddle {
 
   /////////////// Properties ///////////////
-  //j'ai rajouté paddle image
-  PImage paddleImage;
 
   // Default values for speed and size
   int SPEED = 5;
   int HEIGHT = 70;
   int WIDTH = 16;
-  
-
 
   // The position and velocity of the paddle (note that vx isn't really used right now)
   int x;
@@ -45,8 +41,6 @@ class Paddle {
 
     upKey = _upKey;
     downKey = _downKey;
-    //paddleimage ici aussi 
-      paddleImage=loadImage("saumon.png");
   }
 
 
@@ -76,8 +70,7 @@ class Paddle {
     rectMode(CENTER);
     
     // Draw the paddle as a rectangle
-    //rect(x, y, WIDTH, HEIGHT);
-     image(paddleImage, x, y, WIDTH, HEIGHT);
+    rect(x, y, WIDTH, HEIGHT);
   }
 
   // keyPressed()

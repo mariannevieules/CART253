@@ -6,15 +6,11 @@
 class Paddle {
 
   /////////////// Properties ///////////////
-  //j'ai rajouté paddle image
-  PImage paddleImage;
 
   // Default values for speed and size
   int SPEED = 5;
   int HEIGHT = 70;
   int WIDTH = 16;
-  
-
 
   // The position and velocity of the paddle (note that vx isn't really used right now)
   int x;
@@ -28,6 +24,10 @@ class Paddle {
   // The characters used to make the paddle move up and down, defined in constructor
   char upKey;
   char downKey;
+  
+  int score;
+  int counter=1000;
+  
 
 
   /////////////// Constructor ///////////////
@@ -45,8 +45,6 @@ class Paddle {
 
     upKey = _upKey;
     downKey = _downKey;
-    //paddleimage ici aussi 
-      paddleImage=loadImage("saumon.png");
   }
 
 
@@ -77,7 +75,15 @@ class Paddle {
     
     // Draw the paddle as a rectangle
     //rect(x, y, WIDTH, HEIGHT);
-     image(paddleImage, x, y, WIDTH, HEIGHT);
+    textSize(18);
+text(counter, x, y); 
+pushMatrix();
+translate(width/2, height/2);
+rotate(PI/3.0);
+popMatrix();
+//textAlign(alignY);
+counter--;
+
   }
 
   // keyPressed()
