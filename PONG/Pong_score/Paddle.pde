@@ -76,10 +76,14 @@ class Paddle {
     // Draw the paddle as a rectangle
     //rect(x, y, WIDTH, HEIGHT);
     textSize(18);
-text(counter, x, y); 
+//text(counter, x, y); 
 pushMatrix();
-translate(width/2, height/2);
-rotate(PI/3.0);
+//translate(width/2, height/2);
+translate(x, y);
+rotate(PI/2);
+fill(255);
+textAlign(CENTER, CENTER);
+text(counter, 0, 0); 
 popMatrix();
 //textAlign(alignY);
 counter--;

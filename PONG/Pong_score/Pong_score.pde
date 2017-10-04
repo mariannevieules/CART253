@@ -15,7 +15,7 @@ Paddle rightPaddle;
 Ball ball;
 
 // The distance from the edge of the window a paddle should be
-int PADDLE_INSET = 8;
+int PADDLE_INSET = 20;
 
 // The background colour during play (black)
 color backgroundColor = color(0);
