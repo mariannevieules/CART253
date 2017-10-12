@@ -128,13 +128,8 @@ void draw() {
   //on active le bloc de code de mise à jour de la position de la balle
   updateBall2();
   //on active le bloc de code dessinant la balle
-  if (ballSize>0) {
   drawBall2(); 
-  }
   
-  else {
-    text("gagné",100,100);
-  }
 }
 //bloc de code dessinant les points aléatoires en fond
 void drawStatic() {
@@ -144,15 +139,15 @@ void drawStatic() {
   //LOOP
   
   // boucle (=loop) for, qui positionne des lignes horiz tous les 4 pixels, du bord haut (=0) jusqu'au bord bas (=height):
- // for (int i=0; i<mouseY; i+=4) { //...on commence à zero...
+  for (int i=0; i<mouseY; i+=4) { //...on commence à zero...
    //..on va jusqu'en bas de la fenêtre..
   //... on saute de 4 en 4 à chaque cycle, pour changer la position y (vertic) d'une ligne à l'autre
  
     
     
-  //stroke(random(155),random(155));//couleur grise et transparence aléatoires qui changent en permanence
-  //strokeWeight(4);//les lignes sont épaisses de4 pixels de large
-  //line(0,i,width,i);//dessin des lignes grace à la loop
+  stroke(random(155),random(155));//couleur grise et transparence aléatoires qui changent en permanence
+  strokeWeight(4);//les lignes sont épaisses de4 pixels de large
+  line(0,i,width,i);//dessin des lignes grace à la loop
   // le i correspond à la position y (=vertic) ed chaque lignes
   //la première ligne est dessinnée à la position 0 (i=0)
   //la deuxième ligne est dessinnée à la position 4 (i=0+4)
@@ -160,7 +155,7 @@ void drawStatic() {
   //la quatrième ligne est dessinnée à la position 12 (i=0+4+4+4)
   //etc...
   //et ainsi de suite jusqu'à la limite posée dans la boucle, c'est à dire la valeur verticale maximale de la fenêtre (i<height) )
-  //}
+  }
   //
   
   
@@ -214,7 +209,6 @@ void updateBall2() {
   handleBallHitWall2();
   //activation du bloc de code gérant que faire si la balle touche le bas de la fenêtre
   handleBallOffBottom2();
-  cridelaballe();
   
 }
 
@@ -312,7 +306,6 @@ void drawBall2() {
 }
 //que faire si la balle touche le paddle
 void handleBallHitPaddle2() {
-  ballSize=ballSize-10;//diminue taille si touche paddle
     
   
   if (ballOverlapsPaddle2()) {//vérifie si la balle touche le paddle
@@ -347,7 +340,7 @@ void handleBallOffBottom2() {
 }
 //vérifie si la balle touche le bas , et renvoie une valeur booléenne (=vrai ou faux)
 boolean ballOffBottom2() {
-  //envoie vrai si la coordonnée vertic de la balle (ballY- la moitié de l'épaisseur de la balle) dépassent la valeur verticale maxi de la fenêtre
+  //envoie vrai si la coordonnée vertic de la balle (ballY- la moitié de l'épaisseur de la balle) dépassent l avaleur verticale maxi de la fenêtre
   return (ballY2 - ballSize2/2 > height);
 }
 //que faire si la balle touche les côtés de la fenêtre
