@@ -6,28 +6,34 @@
 class Paddle {
 
   /////////////// Properties ///////////////
-  //j'ai rajouté paddle image
-  PImage paddleImage;
 
   // Default values for speed and size
   int SPEED = 5;
   int HEIGHT = 70;
   int WIDTH = 16;
-  
 
+  int SCOREUP = 0;
+  int SCOREDOWN = 0;
+  int PLAYERSCORE = 0;
 
   // The position and velocity of the paddle (note that vx isn't really used right now)
   int x;
   int y;
   int vx;
   int vy;
-  
+
   // The fill color of the paddle
   color paddleColor = color(255);
 
   // The characters used to make the paddle move up and down, defined in constructor
   char upKey;
   char downKey;
+
+  int score;
+
+  //on met le score du paddle elevé des le depart
+  long counter=999999;
+
 
 
   /////////////// Constructor ///////////////
@@ -37,7 +43,7 @@ class Paddle {
   // Sets the position and controls based on arguments,
   // starts the velocity at 0
 
-  Paddle(int _x, int _y, char _upKey, char _downKey) {
+    Paddle(int _x, int _y, char _upKey, char _downKey) {
     x = _x;
     y = _y;
     vx = 0;
@@ -45,8 +51,6 @@ class Paddle {
 
     upKey = _upKey;
     downKey = _downKey;
-    //paddleimage ici aussi 
-      paddleImage=loadImage("saumon.png");
   }
 
 
@@ -61,29 +65,64 @@ class Paddle {
     x += vx;
     y += vy;
 
+    //si le paddle monte augmente le scoreup
+    if (vy > 0) {
+      SCOREUP ++;
+    }
+    //si le paddle descend augmenter le scoredown
+    if (vy < 0) {
+      SCOREDOWN ++;
+    }
+
     // Constrain the paddle's y position to be in the window
-    y = constrain(y,0 + HEIGHT/2,height - HEIGHT/2);
+    y = constrain(y, 0 + HEIGHT/2, height - HEIGHT/2);
   }
 
   // display()
   //
   // Display the paddle at its location
-  
+
   void display() {
     // Set display properties
     noStroke();
     fill(paddleColor);
     rectMode(CENTER);
-    
+
     // Draw the paddle as a rectangle
-    //rect(x, y, WIDTH, HEIGHT);
-     image(paddleImage, x, y, WIDTH, HEIGHT);
+   // rect(x, y, WIDTH, HEIGHT);
+    textSize(18);
+    //text(counter, x, y); 
+    pushMatrix();
+    //translate(width/2, height/2);
+    translate(x, y);
+    rotate(PI/2);
+    fill(255);
+    textAlign(CENTER, CENTER);
+    
+    String s = "" + counter;
+    HEIGHT = s.length() * 10;
+    text(s, 0, 0); 
+    popMatrix();
+    //textAlign(alignY);
+    //on fait decroitre le compteur (=le texte affiché)
+    counter--;
+    
+
+    ///si le score passe en dessous de zero : GAME OVER
+    //if(counter<0)lost=true;
+
+
+    //display score
+
+    text(PLAYERSCORE, x, 5);
+    text(SCOREDOWN, x, height-20);
+    text(SCOREUP, x, 20);
   }
 
   // keyPressed()
   //
   // Called when keyPressed is called in the main program
-  
+
   void keyPressed() {
     // Check if the key is our up key
     if (key == upKey) {

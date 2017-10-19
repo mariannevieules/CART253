@@ -5,10 +5,11 @@
 
 class Ball {
 
+
   /////////////// Properties ///////////////
 
   // Default values for speed and size
-  int SPEED = 5;
+  int SPEED = 1;
   int SIZE = 16;
 
   // The location of the ball
@@ -20,7 +21,9 @@ class Ball {
   int vy;
 
   // The colour of the ball
-  color ballColor = color(255);
+  color ballColor = color(200);
+
+  int counter;
 
 
   /////////////// Constructor ///////////////
@@ -61,17 +64,17 @@ class Ball {
       vy = -vy;
     }
   }
-  
+
   // reset()
   //
   // Resets the ball to the centre of the screen.
   // Note that it KEEPS its velocity
-  
-  void reset() {
+
+    void reset() {
     x = width/2;
     y = height/2;
   }
-  
+
   // isOffScreen()
   //
   // Returns true if the ball is off the left or right side of the window
@@ -79,9 +82,23 @@ class Ball {
   // (If we wanted to return WHICH side it had gone off, we'd have to return
   // something like an int (e.g. 0 = not off, 1 = off left, 2 = off right)
   // or a String (e.g. "ON SCREEN", "OFF LEFT", "OFF RIGHT")
-  
+
   boolean isOffScreen() {
     return (x + SIZE/2 < 0 || x - SIZE/2 > width);
+  }
+
+//gère les scores 
+  void checkPlayerScore(Paddle playerLeft, Paddle playerRight) {
+    if (isOffScreen()) {
+      if (x+SIZE/2 <0) {
+        //àdroite
+        playerRight.PLAYERSCORE += 1;
+      }
+      if (x - SIZE/2 <width) {
+        //à gauche
+        playerLeft.PLAYERSCORE += 1;
+      }
+    }
   }
 
   // collide(Paddle paddle)
@@ -96,7 +113,7 @@ class Ball {
     boolean insideRight = (x - SIZE/2 < paddle.x + paddle.WIDTH/2);
     boolean insideTop = (y + SIZE/2 > paddle.y - paddle.HEIGHT/2);
     boolean insideBottom = (y - SIZE/2 < paddle.y + paddle.HEIGHT/2);
-    
+
     // Check if the ball overlaps with the paddle
     if (insideLeft && insideRight && insideTop && insideBottom) {
       // If it was moving to the left
@@ -109,6 +126,9 @@ class Ball {
       }
       // And make it bounce
       vx = -vx;
+
+      if (x>width/2)rightPaddle.PLAYERSCORE++;
+      else leftPaddle.PLAYERSCORE++;
     }
   }
 
@@ -122,7 +142,10 @@ class Ball {
     fill(ballColor);
     rectMode(CENTER);
 
-    // Draw the ball
-    rect(x, y, SIZE, SIZE);
+    // ssssllkklllllllsDraw the ball
+    //rect(x, y, SIZE, SIZE);
+    textSize(18);
+    text(counter, x, y); 
+    counter++;
   }
 }
