@@ -68,6 +68,14 @@ class Bouncer {
     // Make sure the Bouncer isn't off the edge
     x = constrain(x, size/2, width-size/2);
     y = constrain(y, size/2, height-size/2);
+
+
+    //on teste si on touche le paddle (en vérifiant la disatnce entre le bouncer et le paddle),
+    //auquel cas on rebondit en inversant les vitesses x et y
+    if (dist (x, y, pad.x, pad.y)<20) {
+      vy = -vy;
+      vx = -vx;
+    }
   }
 
   // display()
